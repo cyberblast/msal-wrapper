@@ -4,7 +4,8 @@
   "description": "Wrapper library for \"Microsoft Authentication Library for js\"",
   "main": "src/msalWrapper.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "version-patch": "npm version patch -m \"version patch increment\"",
+    "publish-npm": "npm publish --access public"
   },
   "author": "",
   "license": "MIT",
