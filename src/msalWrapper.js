@@ -51,13 +51,16 @@ class MsalWrapper {
       onLogout.emit();
       msalClient.logout();
     };
-    this.sendXhr = function (xhr, scopes = config.scopes) {
-      //Call acquireTokenSilent (iframe) to obtain a token for Microsoft Graph
-      acquireTokenSilent(scopes, accessToken => submitXhr(xhr, accessToken), error => onError.emit(error));
+    this.setXhrHeader = function (xhr, scopes = config.scopes) {
+      acquireTokenSilent(scopes, accessToken => setRequestHeader(xhr, accessToken), error => onError.emit(error));
     };
-    function submitXhr(xhr, accessToken) {
+    this.acquireToken = function (callback, scopes = config.scopes) {
+      //Call acquireTokenSilent (iframe) to obtain a token for Microsoft Graph
+      acquireTokenSilent(scopes, accessToken => callback(accessToken), error => onError.emit(error));
+    };
+    function setRequestHeader(xhr, accessToken) {
       xhr.setRequestHeader('Authorization', 'Bearer ' + accessToken);
-      xhr.send();
+      //xhr.send();
     }
     function acquireTokenSilent(scopes, completeCallback, errorCallback) {
       msalClient.acquireTokenSilent(scopes).then(function (accessToken) {
