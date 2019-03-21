@@ -1,6 +1,6 @@
 {
   "name": "@cyberblast/msal-wrapper",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Wrapper library for \"Microsoft Authentication Library for js\"",
   "main": "src/msalWrapper.js",
   "scripts": {
